@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__GMMovementConfigData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__GMMovementConfigData",
+  "parent":{
+    "name":"__data",
+    "path":"folders/GMMovement/__data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
