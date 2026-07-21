@@ -5,7 +5,7 @@ function __GMMConfig() {
 			
 	static player			  = noone;
 	static collision		  = noone;
-	static collision_side	  = noone;
+	static collision_horiz	  = noone;
 	static collision_vert	  = noone;
 	static collision_ground	  = noone;
 	static gamespeed		  = 60;	
@@ -37,7 +37,6 @@ function __GMMConfig() {
 	static fall_speed_max	  = GMM_fall_speed_max;
 	static fall_speed_acc	  = GMM_fall_speed_acc
 	
-
 	
 	return static_get(__GMMConfig)
 }

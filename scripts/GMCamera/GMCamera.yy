@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMControls",
+  "%Name":"GMCamera",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMControls",
+  "name":"GMCamera",
   "parent":{
-    "name":"GMControls",
-    "path":"folders/Systems/GMControls.yy",
+    "name":"GMCamera",
+    "path":"folders/Systems/GMCamera.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

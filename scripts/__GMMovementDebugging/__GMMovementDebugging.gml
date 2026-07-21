@@ -2,11 +2,11 @@ global.refGMMovement = GMMovement();
 global.refGMMSet = GMMSet();
 global.refGMMConfig = __GMMConfig();
 
-function GMMDebug(_enable) {
+function __GMMDebug(_enable) {
 
 	dbg_view("GMMovement", _enable);
 		dbg_section("General", true);
-			dbg_text(" collision_side:                   "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "collision_side"));
+			dbg_text(" collision_horiz:                  "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "collision_horiz"));
 			dbg_text(" collision_vert:                   "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "collision_vert"));
 			dbg_slider(ref_create(__GMMConfig(), "walk_speed"), -__GMMConfig.walk_speed_max, __GMMConfig.walk_speed_max, "walk_speed:");
 				dbg_text_input(ref_create(__GMMConfig(), "walk_speed_max"), "walk_speed_max:", "r");

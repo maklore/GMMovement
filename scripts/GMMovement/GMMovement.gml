@@ -64,7 +64,7 @@ function GMMovement() {
 		
 		with (_get.player) {
 
-			_get.collision_side	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
+			_get.collision_horiz	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
 			_get.collision_vert   = instance_place(x, y + _get.fall_speed, _get.collision);
 			_get.collision_ground = instance_place(x, y + 1, _get.collision);
 			
@@ -79,9 +79,9 @@ function GMMovement() {
 				}
 			}
 			
-			if _get.collision_side != noone {
+			if _get.collision_horiz != noone {
 				
-				var _distance_side = distance_to_object(_get.collision_side);
+				var _distance_side = distance_to_object(_get.collision_horiz);
 				
 				_get.walk_speed = _distance_side * _horizontal;
 			}

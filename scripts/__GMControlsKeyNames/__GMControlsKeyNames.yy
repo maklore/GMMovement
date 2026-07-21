@@ -6,7 +6,7 @@
   "name":"__GMControlsKeyNames",
   "parent":{
     "name":"GMControls",
-    "path":"folders/GMControls.yy",
+    "path":"folders/Systems/GMControls.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

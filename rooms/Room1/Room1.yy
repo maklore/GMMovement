@@ -6,13 +6,13 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_5C0D9680","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_13DFF03F","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_61501E4C","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_35EB6EE","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_39F169E","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_274F6956","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_19F201FB","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_5C0D9680","path":"rooms/Room1/Room1.yy",},
   ],
   "isDnd":false,
   "layers":[
