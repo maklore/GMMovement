@@ -2,14 +2,7 @@
 /**
 * @returns {struct.GMM}
 */
-function GMM(_player_object, _collision_instance, _gamespeed = game_get_speed(gamespeed_fps)) {
-		
-	__GMMConfig.config.player	 = _player_object;
-	__GMMConfig.config.collision = _collision_instance;
-	__GMMConfig.config.gamespeed = _gamespeed;
-	//_player_object.refGMM = static_get(GMM);
-	//_player_object.refGMMSet = GMMSet();
-	//_player_object.refGMMConfig = __GMMConfig();
+function GMMovement() {
 
 	/**
 	*
@@ -20,13 +13,7 @@ function GMM(_player_object, _collision_instance, _gamespeed = game_get_speed(ga
 	*/		
 	static platformer = function(_horizontal, _jump = false, _run = false, _dash = false) {
 		
-		static _get = __GMMConfig.config;
-		static _dash_cd = 0;
-		static _jumped = false;
-		static _ground_req = _get.jump_grounded;
-		static _grounded = false;
-		static _coyote_time = 0;
-		static _coyote_enable = false;
+		var _get = __GMMConfig();
 				
 		if !_run {
 			var _walk_int = _horizontal != 0 ? _get.walk_speed_acc : _get.walk_speed_dec;
@@ -38,67 +25,71 @@ function GMM(_player_object, _collision_instance, _gamespeed = game_get_speed(ga
 			_get.walk_speed = _get.run_speed;			
 		}
 		
-		if _dash_cd <= 0 and _dash {
+		if _get.dash_countdown <= 0 and _horizontal != 0 and _dash {
 			_get.walk_speed += _get.dash_speed * _horizontal;
-			_dash_cd = _get.dash_cooldown;
+			_get.dash_countdown = _get.dash_cooldown;
 		}
-		if _dash_cd > 0 {
-			_dash_cd -= 1 / _get.gamespeed;
-			if _dash_cd <= 0 {
-				_dash_cd = 0;	
+		
+		if _get.dash_countdown > 0 {
+			_get.dash_countdown -= 1 / _get.gamespeed;
+			if _get.dash_countdown <= 0 {
+				_get.dash_countdown = 0;	
 			}
 		}
 		
-		if !_ground_req and _jump {
+		if !_get.jump_ground_req and _jump {
 			_get.fall_speed = -_get.jump_speed;
-			_jumped = true;
-		} else if _jump and (_grounded or _coyote_enable) {
+			_get.jump_triggered = true;
+		} else if _jump and (_get.jump_grounded or _get.jump_coyote_active) {
 			_get.fall_speed = -_get.jump_speed;
-			_jumped = true;
-			_coyote_enable = false;
+			_get.jump_triggered = true;
+			_get.jump_coyote_active = false;
 		}
 		
-		if _coyote_time > 0 {
-			_coyote_time -= 1 / _get.gamespeed;
-			if _coyote_time <= 0 {
-				_coyote_time = 0;
-				_coyote_enable = false;
+		if _get.jump_coyote_timer > 0 {
+			_get.jump_coyote_timer -= 1 / _get.gamespeed;
+			if _get.jump_coyote_timer <= 0 {
+				_get.jump_coyote_timer = 0;
+				_get.jump_coyote_active = false;
 			}
 		}
 		
-		if _jumped and _get.fall_speed <= 0 {
-			_jumped = false;
+		if _get.jump_triggered and _get.fall_speed >= 0 {
+			_get.jump_triggered = false;
 		}
 		
-		var _fall_int = !_jumped ? _get.fall_speed_acc : _get.jump_speed_dec;
+		var _fall_int = !_get.jump_triggered ? _get.fall_speed_acc : _get.jump_speed_dec;
 		
 		_get.fall_speed = lerp(_get.fall_speed, _get.fall_speed_max, _fall_int);
 		
 		with (_get.player) {
 
-			var _side_collision	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
-			var _vert_collision   = instance_place(x, y + _get.fall_speed, _get.collision);
-			var _ground_collision = instance_place(x, y + 1, _get.collision);
+			_get.collision_side	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
+			_get.collision_vert   = instance_place(x, y + _get.fall_speed, _get.collision);
+			_get.collision_ground = instance_place(x, y + 1, _get.collision);
 			
-			if _ground_collision != noone {
-				_grounded = true;
-			} else if _grounded != false {
-				_grounded = false;
-				_coyote_time = _get.jump_coyote_time;
-				_coyote_enable = true;
+			if _get.collision_ground != noone {
+				_get.jump_grounded = true;
+				_get.jump_coyote_timer = 0;
+			} else if _get.jump_grounded != false {
+				_get.jump_grounded = false;
+				if _get.fall_speed >= 0 {
+					_get.jump_coyote_timer = _get.jump_coyote_time;
+					_get.jump_coyote_active = true;
+				}
 			}
 			
-			if _side_collision != noone {
+			if _get.collision_side != noone {
 				
-				var _distance_side = distance_to_object(_side_collision);
+				var _distance_side = distance_to_object(_get.collision_side);
 				
 				_get.walk_speed = _distance_side * _horizontal;
 			}
-			if _vert_collision != noone {
+			if _get.collision_vert  != noone {
 				
-				var _distance_vert = distance_to_object(_vert_collision);
+				var _distance_vert = distance_to_object(_get.collision_vert);
 				
-				_get.fall_speed = _distance_vert;
+				_get.fall_speed = _distance_vert * sign(_get.fall_speed);
 			}
 		}
 		
@@ -115,7 +106,8 @@ function GMM(_player_object, _collision_instance, _gamespeed = game_get_speed(ga
 		
 	}
 	
-	return static_get(GMM);
+	return static_get(GMMovement);
 
 }
 
+GMMovement();

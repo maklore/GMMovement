@@ -3,5 +3,5 @@
 * @returns {struct}
 */
 function GMMGet() {
-	return __GMMConfig.config;
+	return __GMMConfig;
 }

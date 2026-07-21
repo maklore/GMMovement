@@ -12,9 +12,9 @@ function GMMSet() {
 	*/
 	static walk = function(_max, _acceleration, _deceleration) {
 		
-		__GMMConfig.config.walk_speed_max = _max;
-		__GMMConfig.config.walk_speed_acc = _acceleration;
-		__GMMConfig.config.walk_speed_dec = _deceleration;
+		__GMMConfig.walk_speed_max = _max;
+		__GMMConfig.walk_speed_acc = _acceleration;
+		__GMMConfig.walk_speed_dec = _deceleration;
 		return GMMSet();
 	}
 		
@@ -25,9 +25,9 @@ function GMMSet() {
 	* @param {real} _deceleration Deceleration speed.
 	*/
 	static run = function(_max, _acceleration, _deceleration) {
-		__GMMConfig.config.run_speed_max = _max;
-		__GMMConfig.config.run_speed_acc = _acceleration;
-		__GMMConfig.config.run_speed_dec = _deceleration;
+		__GMMConfig.run_speed_max = _max;
+		__GMMConfig.run_speed_acc = _acceleration;
+		__GMMConfig.run_speed_dec = _deceleration;
 		return GMMSet();
 	}
 		
@@ -37,8 +37,8 @@ function GMMSet() {
 	* @param {real} _cooldown	 Cooldown in seconds.
 	*/
 	static dash = function(_amount, _cooldown = GMM_dash_cooldown) {
-		__GMMConfig.config.dash_speed	 = _amount;
-		__GMMConfig.config.dash_cooldown = _cooldown;
+		__GMMConfig.dash_speed	 = _amount;
+		__GMMConfig.dash_cooldown = _cooldown;
 		return GMMSet();
 	}
 		
@@ -50,10 +50,10 @@ function GMMSet() {
 	* @param {real} _coyote_time  Seconds after leaving ground to jump, requires grounded to be enabled.
 	*/
 	static jump = function(_max, _deceleration, _grounded = GMM_jump_grounded, _coyote_time = GMM_jump_coyote_time) {
-		__GMMConfig.config.jump_speed		= _max;
-		__GMMConfig.config.jump_speed_dec	= _deceleration;
-		__GMMConfig.config.jump_grounded	= _grounded;
-		__GMMConfig.config.jump_coyote_time = _coyote_time;
+		__GMMConfig.jump_speed		  = _max;
+		__GMMConfig.jump_speed_dec	  = _deceleration;
+		__GMMConfig.jump_ground_req   = _grounded;
+		__GMMConfig.jump_coyote_time  = _coyote_time;
 		return GMMSet();
 	}
 		
@@ -63,8 +63,8 @@ function GMMSet() {
 	* @param {real} _acceleration Acceleration speed. 0-1.
 	*/
 	static fall = function(_max, _acceleration) {
-		__GMMConfig.config.fall_speed_max = _max;
-		__GMMConfig.config.fall_speed_acc = _acceleration;
+		__GMMConfig.fall_speed_max = _max;
+		__GMMConfig.fall_speed_acc = _acceleration;
 		return GMMSet();
 	}
 

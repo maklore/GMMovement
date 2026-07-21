@@ -8,6 +8,7 @@
 		
 #macro GMM_dash_speed		0
 #macro GMM_dash_cooldown	0
+#macro GMM_dash_countdown	0
 		
 #macro GMM_jump_speed		0
 #macro GMM_jump_speed_dec	0

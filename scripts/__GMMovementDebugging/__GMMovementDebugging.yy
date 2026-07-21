@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__GMMovementDebugging",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__GMMovementDebugging",
+  "parent":{
+    "name":"__data",
+    "path":"folders/GMMovement/__data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

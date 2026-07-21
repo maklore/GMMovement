@@ -2,36 +2,42 @@
 * @returns {struct.__GMMConfig}
 */
 function __GMMConfig() {
+			
+	static player			  = noone;
+	static collision		  = noone;
+	static collision_side	  = noone;
+	static collision_vert	  = noone;
+	static collision_ground	  = noone;
+	static gamespeed		  = 60;	
+		
+	static walk_speed		  = 0;
+	static walk_speed_max	  = GMM_walk_speed_max;
+	static walk_speed_acc	  = GMM_walk_speed_acc;
+	static walk_speed_dec	  = GMM_walk_speed_dec;
+		
+	static run_speed		  = 0;
+	static run_speed_max	  = GMM_run_speed_max;
+	static run_speed_acc	  = GMM_run_speed_acc;
+	static run_speed_dec	  = GMM_run_speed_dec;
+		
+	static dash_speed		  = GMM_dash_speed;
+	static dash_cooldown	  = GMM_dash_cooldown;
+	static dash_countdown	  = GMM_dash_countdown;
 	
-	static config = {
+	static jump_speed		  = GMM_jump_speed;
+	static jump_speed_dec	  = GMM_jump_speed_dec;
+	static jump_ground_req	  = GMM_jump_grounded;
+	static jump_grounded	  = false;
+	static jump_triggered	  = false;
+	static jump_coyote_time   = GMM_jump_coyote_time;
+	static jump_coyote_timer  = 0;
+	static jump_coyote_active = false;
 		
-		player			 : noone,
-		collision		 : noone,
-		gamespeed		 : 60,	
-		
-		walk_speed		 : 0,
-		walk_speed_max	 : GMM_walk_speed_max,
-		walk_speed_acc	 : GMM_walk_speed_acc,
-		walk_speed_dec	 : GMM_walk_speed_dec,
-		
-		run_speed		 : 0,
-		run_speed_max	 : GMM_run_speed_max,
-		run_speed_acc	 : GMM_run_speed_acc,
-		run_speed_dec	 : GMM_run_speed_dec,
-		
-		dash_speed		 : GMM_dash_speed,
-		dash_cooldown	 : GMM_dash_cooldown,
-		
-		jump_speed		 : GMM_jump_speed,
-		jump_speed_dec	 : GMM_jump_speed_dec,
-		jump_grounded	 : GMM_jump_grounded,
-		jump_coyote_time : GMM_jump_coyote_time,
-		
-		fall_speed		 : 0,
-		fall_speed_max	 : GMM_fall_speed_max,
-		fall_speed_acc	 : GMM_fall_speed_acc
+	static fall_speed		  = 0;
+	static fall_speed_max	  = GMM_fall_speed_max;
+	static fall_speed_acc	  = GMM_fall_speed_acc
 	
-	}
+
 	
 	return static_get(__GMMConfig)
 }
