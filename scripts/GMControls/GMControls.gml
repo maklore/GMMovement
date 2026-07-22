@@ -10,7 +10,9 @@ function GMControls() {
 	static __key = {
 		left			: [ord("A"),	vk_left],
 		right			: [ord("D"),	vk_right],
-		jump			: [ord("W"),	vk_up],
+		down			: [ord("S"),	vk_down],
+		up				: [ord("W"),	vk_up],
+		jump			: [vk_space,	-4],
 		run				: [vk_shift,	-4],
 		dash			: [vk_control,	-4],
 		menu			: [vk_escape,	-4]

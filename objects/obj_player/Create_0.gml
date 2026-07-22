@@ -8,7 +8,8 @@ camera.enable(true);
 
 GMMInit(id, [obj_floor, obj_wall]);
 //var _time = get_timer();
-GMMSet.walk(6, 0.16, 0.1).fall(20, 0.05).jump(20, 0.05, true, 1).run(10, 0.2, 0.1).dash(20, 1);
+//GMMSet.walk(6, 0.16, 0.1).fall(20, 0.05).jump(20, 0.05, true, 1).run(10, 0.2, 0.1).dash(20, 1);
+GMMSet.walk(6, 0.16, 0.1).jump(20, 0.05, true, 1).run(10, 0.2, 0.1).dash(20, 1);
 //show_debug_message($"{(get_timer() - _time) / 1000}ms")
 
 __GMMDebug(true);

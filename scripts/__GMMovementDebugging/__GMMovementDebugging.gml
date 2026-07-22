@@ -33,6 +33,9 @@ function __GMMDebug(_enable) {
 			dbg_text(" jump_coyote_active:               "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "jump_coyote_active"));
 			dbg_text(" jump_coyote_timer:                "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "jump_coyote_timer"));
 				dbg_text_input(ref_create(__GMMConfig(), "jump_coyote_time"), "jump_coyote_time:", "r");
-
-
+		
+		dbg_section("Traditional", true);
+			dbg_text(" walk_speed_x:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_x"));
+			dbg_text(" walk_speed_y:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_y"));
+			dbg_text(" direction_last:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "direction_last"));
 }

@@ -10,7 +10,11 @@ function __GMMConfig() {
 	static collision_ground	  = noone;
 	static gamespeed		  = 60;	
 		
+	static direction_last	  = 0;
+	
 	static walk_speed		  = 0;
+	static walk_speed_x		  = 0;
+	static walk_speed_y		  = 0;
 	static walk_speed_max	  = GMM_walk_speed_max;
 	static walk_speed_acc	  = GMM_walk_speed_acc;
 	static walk_speed_dec	  = GMM_walk_speed_dec;
