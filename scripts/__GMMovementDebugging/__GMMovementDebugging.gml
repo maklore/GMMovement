@@ -40,4 +40,22 @@ function __GMMDebug(_enable) {
 			dbg_text(" walk_speed_x:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_x"));
 			dbg_text(" walk_speed_y:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_y"));
 			dbg_text(" direction_last:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "direction_last"));
+		
+		dbg_section("Grid", true);
+			dbg_text(" grid_x:                            "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_x"));
+			dbg_text(" grid_y:                            "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_y"));
+			dbg_text(" grid_previous_x:                   "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_previous_x"));
+			dbg_text(" grid_previous_y:                   "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_previous_y"));
+			dbg_text(" grid_target_x:                     "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_target_x"));
+			dbg_text(" grid_target_y:                     "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_target_y"));
+			dbg_text(" grid_int_x:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_x"));
+			dbg_text(" grid_int_y:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_y"));
+			dbg_text(" grid_walking_x:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_walking_x"));
+			dbg_text(" grid_walking_y:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_walking_y"));
+			dbg_text(" grid_int_x:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_x"));
+			dbg_text(" grid_int_y:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_y"));
+				dbg_text_input(ref_create(__GMMConfig(), "grid_speed"), "grid_speed:", "r");
+				dbg_text_input(ref_create(__GMMConfig(), "grid_distance"), "grid_distance:", "r");
+
+
 }
