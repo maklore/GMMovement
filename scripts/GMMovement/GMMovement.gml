@@ -242,18 +242,68 @@ function GMMovement() {
 	}
 	
 	/**
-	*
+	* Press any movement input to exit auto movement after releasing
 	* @param {real} _horizontal		Get reals from input check (Right - Left).
 	* @param {real} _vertical		Get reals from input check (Down - Up).
+	* @param {bool} _record			Optional. Hold input check to record movement input.
 	*/		
-	static grid = function(_horizontal, _vertical) {
+	static grid = function(_horizontal, _vertical, _record = false) {
 		
 		static _get = __GMMConfig();
+						
+		if _record and !_get.grid_path_trigger and (_horizontal != 0 or _vertical != 0) {
+			array_push(_get.grid_path_record, point_direction(0, 0, _horizontal, _vertical) div 90);
+			_get.grid_path_length++;
+			_get.grid_path_trigger = true;
+		} else if _record and _get.grid_path_trigger and _horizontal == 0 and _vertical == 0 {
+			_get.grid_path_trigger = false;
+		}
+		
+		if _record { 
+			exit; 
+		} else if !_get.grid_path_enable {
+			_get.grid_path_enable = true;
+		}
+		
+		if _get.grid_path_enable and _horizontal != 0 or _vertical != 0 {	
+			array_resize(_get.grid_path_record, 0);
+			_get.grid_path_length = 0;
+			_get.grid_path_active = false;
+			_get.grid_path_enable = false;
+		}
+		
+		if _get.grid_path_length != 0 and !_record and !_get.grid_path_active {
+			
+			switch(_get.grid_path_record[0]) {
+				case 0:
+					_horizontal = 1;
+					_get.grid_path_active = true;
+				break;
+				case 1:
+					_vertical = -1;
+					_get.grid_path_active = true;
+				break;
+				case 2:
+					_horizontal = -1;
+					_get.grid_path_active = true;
+				break;
+				case 3:
+					_vertical = 1;
+					_get.grid_path_active = true;
+				break;
+			}
+		}
 				
 		with (_get.player) {
 
 			_get.collision_horiz  = instance_place(x + (_get.grid_distance * 0.5) * _horizontal, y, _get.collision);
 			_get.collision_vert   = instance_place(x, y + (_get.grid_distance * 0.5) * _vertical, _get.collision);
+		}
+		
+		if _get.grid_path_active and (_get.collision_horiz != noone or _get.collision_vert != noone) {
+			array_resize(_get.grid_path_record, 0);
+			_get.grid_path_length = 0;
+			_get.grid_path_active = false;
 		}
 		
 		if _get.collision_horiz == noone and _horizontal != 0 and !_get.grid_walking_x and !_get.grid_walking_y {
@@ -276,6 +326,11 @@ function GMMovement() {
 				_get.grid_previous_x = _get.player.x;
 				_get.grid_int_x = 0;
 				_get.grid_walking_x = false;
+				if _get.grid_path_active {
+					array_shift(_get.grid_path_record);
+					_get.grid_path_length--;
+					_get.grid_path_active = false;
+				}
 			}
 		}
 			
@@ -287,9 +342,20 @@ function GMMovement() {
 				_get.grid_previous_y = _get.player.y;
 				_get.grid_int_y = 0;
 				_get.grid_walking_y = false;
+				if _get.grid_path_active {
+					array_shift(_get.grid_path_record);
+					_get.grid_path_length--;
+					_get.grid_path_active = false;
+				}
 			}
 		}
 	}
+	
+	
+	static motion = function() {
+		
+	}
+	
 	
 	return static_get(GMMovement);
 

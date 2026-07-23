@@ -5,12 +5,12 @@ var _jump = GMControls.key_press("jump");
 var _run  = GMControls.key_press("run");
 var _dash = GMControls.key_pressed("dash");
 
-var _time = get_timer();
+//var _time = get_timer();
 
 //GMMovement.platformer(_hor, _jump, _run, _dash);
 //GMMovement.eight_way(_hor, _ver, _run, _dash);
 //GMMovement.four_way(_hor, _ver, _run, _dash);
-GMMovement.grid(_hor, _ver);
+GMMovement.grid(_hor, _ver, _run);
 
 
-show_debug_message($"{string_format((get_timer() - _time) / 1000, 1, 2)}ms")
+//show_debug_message($"{string_format((get_timer() - _time) / 1000, 1, 2)}ms")
