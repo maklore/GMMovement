@@ -249,59 +249,47 @@ function GMMovement() {
 	static grid = function(_horizontal, _vertical) {
 		
 		static _get = __GMMConfig();
-		
-		static _walk_int_x = 0;
-		static _walk_int_y = 0;
-		static _walking_x = false;
-		static _walking_y = false;
-		
+				
 		with (_get.player) {
 
 			_get.collision_horiz  = instance_place(x + (_get.grid_distance) * _horizontal, y, _get.collision);
 			_get.collision_vert   = instance_place(x, y + (_get.grid_distance) * _vertical, _get.collision);
 		}
 		
-		if _get.collision_horiz == noone and _horizontal != 0 and !_walking_x and !_walking_y {
+		if _get.collision_horiz == noone and _horizontal != 0 and !_get.grid_walking_x and !_get.grid_walking_y {
 			_get.grid_previous_x = _get.player.x;
 			_get.grid_target_x = _get.grid_previous_x + _get.grid_distance * _horizontal;
-			_walking_x = true;
+			_get.grid_walking_x = true;
 		}
 		
-		if _get.collision_vert == noone and _vertical != 0  and !_walking_x and !_walking_y {
+		if _get.collision_vert == noone and _vertical != 0  and !_get.grid_walking_x and !_get.grid_walking_y {
 			_get.grid_previous_y = _get.player.y;
 			_get.grid_target_y = _get.grid_previous_y + _get.grid_distance * _vertical;
-			_walking_y = true;
+			_get.grid_walking_y = true;
 		}
 		
-		if _walking_x {
-			_walk_int_x = _walk_int_x < 1 ? _walk_int_x + _get.grid_speed : 1;
-			if _walk_int_x >= 1 {
+		if _get.grid_walking_x {
+			_get.grid_int_x = _get.grid_int_x < 1 ? _get.grid_int_x + _get.grid_speed : 1;
+			if _get.grid_int_x >= 1 {
 				_get.grid_previous_x = _get.player.x;
-				_walk_int_x = 0;
-				_walking_x = false;
+				_get.grid_int_x = 0;
+				_get.grid_walking_x = false;
 			}
-		}
-			
-		if _walking_y {
-			_walk_int_y = _walk_int_y < 1 ? _walk_int_y + _get.grid_speed : 1;
-			if _walk_int_y >= 1 {
-				_get.grid_previous_y = _get.player.y;
-				_walk_int_y = 0;
-				_walking_y = false;
-			}
-		}
-		
-		_get.grid_x = lerp(_get.grid_previous_x, _get.grid_target_x, _walk_int_x);
-		_get.grid_y = lerp(_get.grid_previous_y, _get.grid_target_y, _walk_int_y);
-		
-		
-		//Actual change in movement.
-		if _walk_int_x != 0 {
+			_get.grid_x = lerp(_get.grid_previous_x, _get.grid_target_x, _get.grid_int_x);
 			_get.player.x = _get.grid_x;
 		}
-		if _walk_int_y != 0 {
+			
+		if _get.grid_walking_y {
+			_get.grid_int_y = _get.grid_int_y < 1 ? _get.grid_int_y + _get.grid_speed : 1;
+			if _get.grid_int_y >= 1 {
+				_get.grid_previous_y = _get.player.y;
+				_get.grid_int_y = 0;
+				_get.grid_walking_y = false;
+			}
+			_get.grid_y = lerp(_get.grid_previous_y, _get.grid_target_y, _get.grid_int_y);
 			_get.player.y = _get.grid_y;
 		}
+		
 	}
 	
 	

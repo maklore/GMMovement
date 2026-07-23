@@ -49,6 +49,10 @@ function __GMMConfig() {
 	static grid_target_y	  = 0;
 	static grid_previous_x	  = 0;
 	static grid_previous_y	  = 0;
+	static grid_int_x		  = 0;
+	static grid_int_y		  = 0;
+	static grid_walking_x	  = false;
+	static grid_walking_y	  = false;
 	static grid_speed		  = GMM_grid_speed;
 	static grid_distance	  = GMM_grid_distance;
 	static grid_path_enable   = GMM_grid_path_enable;
