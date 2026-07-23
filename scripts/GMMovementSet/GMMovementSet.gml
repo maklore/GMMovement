@@ -69,6 +69,22 @@ function GMMSet() {
 		__GMMConfig.fall_speed_acc = _acceleration;
 		return GMMSet();
 	}
+	
+	/**
+	* Grid config.
+	* @param {real} _speed			  Speed. 0-1.
+	* @param {real} _distance		  Distance to move.
+	*/
+	static grid = function(_speed, _distance) {
+		__GMMConfig.grid_speed		= _speed;
+		__GMMConfig.grid_distance	= _distance;
+		__GMMConfig.grid_previous_x = __GMMConfig.player.x;
+		__GMMConfig.grid_previous_y = __GMMConfig.player.y;
+		return GMMSet();
+	}
+
+
+
 
 	return static_get(GMMSet)
 	

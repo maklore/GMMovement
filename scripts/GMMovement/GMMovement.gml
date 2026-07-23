@@ -105,7 +105,6 @@ function GMMovement() {
 		}
 	}
 	
-	
 	/**
 	*
 	* @param {real} _horizontal		Get reals from input check (Right - Left).
@@ -173,6 +172,135 @@ function GMMovement() {
 		}
 		if _get.walk_speed_y != 0 {
 			_get.player.y += _get.walk_speed_y;
+		}
+	}
+	
+	/**
+	*
+	* @param {real} _horizontal		Get reals from input check (Right - Left).
+	* @param {real} _vertical		Get reals from input check (Down - Up).
+	* @param {bool} _run  Optional. Trigger with input check.
+	* @param {bool} _dash Optional. Trigger with input check.
+	*/		
+	static four_way = function(_horizontal, _vertical, _run = false, _dash = false) {
+		
+		static _get = __GMMConfig();
+		
+		var _input = _horizontal != 0 or _vertical != 0;
+				
+		if !_run {
+			var _walk_int = _input ? _get.walk_speed_acc : _get.walk_speed_dec;
+			_get.walk_speed = lerp(_get.walk_speed, _get.walk_speed_max * _input, _walk_int);
+		} else {
+			var _run_int	= _input ? _get.run_speed_acc : _get.run_speed_dec;
+			_get.run_speed	= _get.walk_speed;
+			_get.run_speed	= lerp(_get.run_speed, _get.run_speed_max * _input, _run_int);
+			_get.walk_speed = _get.run_speed;			
+		}
+		
+		if _get.dash_countdown <= 0 and _input and _dash {
+			_get.walk_speed += _get.dash_speed;
+			_get.dash_countdown = _get.dash_cooldown;
+		}
+		
+		if _get.dash_countdown > 0 {
+			_get.dash_countdown -= 1 / _get.gamespeed;
+			if _get.dash_countdown <= 0 {
+				_get.dash_countdown = 0;
+			}
+		}
+		
+		_get.walk_speed_x = _vertical   == 0 ? _get.walk_speed * _horizontal : 0;
+		_get.walk_speed_y = _horizontal == 0 ? _get.walk_speed * _vertical   : 0;
+		
+		with (_get.player) {
+
+			_get.collision_horiz  = instance_place(x + _get.walk_speed_x, y, _get.collision);
+			_get.collision_vert   = instance_place(x, y + _get.walk_speed_y, _get.collision);
+						
+			if _get.collision_horiz != noone {
+				
+				var _distance_side = distance_to_object(_get.collision_horiz);
+								
+				_get.walk_speed_x = _distance_side * sign(_get.walk_speed_x);
+			}
+			if _get.collision_vert  != noone {
+				
+				var _distance_vert = distance_to_object(_get.collision_vert);
+								
+				_get.walk_speed_y = _distance_vert * sign(_get.walk_speed_y);
+			}
+		}
+		
+		//Actual change in movement.
+		if _get.walk_speed_x != 0 {
+			_get.player.x += _get.walk_speed_x;
+		}
+		if _get.walk_speed_y != 0 {
+			_get.player.y += _get.walk_speed_y;
+		}
+	}
+	
+	/**
+	*
+	* @param {real} _horizontal		Get reals from input check (Right - Left).
+	* @param {real} _vertical		Get reals from input check (Down - Up).
+	*/		
+	static grid = function(_horizontal, _vertical) {
+		
+		static _get = __GMMConfig();
+		
+		static _walk_int_x = 0;
+		static _walk_int_y = 0;
+		static _walking_x = false;
+		static _walking_y = false;
+		
+		with (_get.player) {
+
+			_get.collision_horiz  = instance_place(x + (_get.grid_distance) * _horizontal, y, _get.collision);
+			_get.collision_vert   = instance_place(x, y + (_get.grid_distance) * _vertical, _get.collision);
+		}
+		
+		if _get.collision_horiz == noone and _horizontal != 0 and !_walking_x and !_walking_y {
+			_get.grid_previous_x = _get.player.x;
+			_get.grid_target_x = _get.grid_previous_x + _get.grid_distance * _horizontal;
+			_walking_x = true;
+		}
+		
+		if _get.collision_vert == noone and _vertical != 0  and !_walking_x and !_walking_y {
+			_get.grid_previous_y = _get.player.y;
+			_get.grid_target_y = _get.grid_previous_y + _get.grid_distance * _vertical;
+			_walking_y = true;
+		}
+		
+		if _walking_x {
+			_walk_int_x = _walk_int_x < 1 ? _walk_int_x + _get.grid_speed : 1;
+			if _walk_int_x >= 1 {
+				_get.grid_previous_x = _get.player.x;
+				_walk_int_x = 0;
+				_walking_x = false;
+			}
+		}
+			
+		if _walking_y {
+			_walk_int_y = _walk_int_y < 1 ? _walk_int_y + _get.grid_speed : 1;
+			if _walk_int_y >= 1 {
+				_get.grid_previous_y = _get.player.y;
+				_walk_int_y = 0;
+				_walking_y = false;
+			}
+		}
+		
+		_get.grid_x = lerp(_get.grid_previous_x, _get.grid_target_x, _walk_int_x);
+		_get.grid_y = lerp(_get.grid_previous_y, _get.grid_target_y, _walk_int_y);
+		
+		
+		//Actual change in movement.
+		if _walk_int_x != 0 {
+			_get.player.x = _get.grid_x;
+		}
+		if _walk_int_y != 0 {
+			_get.player.y = _get.grid_y;
 		}
 	}
 	

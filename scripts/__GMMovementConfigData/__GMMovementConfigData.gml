@@ -41,8 +41,18 @@ function __GMMConfig() {
 		
 	static fall_speed		  = 0;
 	static fall_speed_max	  = GMM_fall_speed_max;
-	static fall_speed_acc	  = GMM_fall_speed_acc
+	static fall_speed_acc	  = GMM_fall_speed_acc;
 	
+	static grid_x			  = 0;
+	static grid_y			  = 0;
+	static grid_target_x	  = 0;
+	static grid_target_y	  = 0;
+	static grid_previous_x	  = 0;
+	static grid_previous_y	  = 0;
+	static grid_speed		  = GMM_grid_speed;
+	static grid_distance	  = GMM_grid_distance;
+	static grid_path_enable   = GMM_grid_path_enable;
+	static grid_path_record   = [];
 	
 	return static_get(__GMMConfig)
 }

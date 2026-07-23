@@ -18,3 +18,7 @@
 		
 #macro GMM_fall_speed_max	0
 #macro GMM_fall_speed_acc	0
+
+#macro GMM_grid_path_enable false
+#macro GMM_grid_distance	0
+#macro GMM_grid_speed		0

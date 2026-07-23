@@ -36,7 +36,7 @@ function __GMMDebug(_enable) {
 			dbg_text(" jump_count:                       "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "jump_count"));
 				dbg_text_input(ref_create(__GMMConfig(), "jump_count_max"), "jump_count_max:", "r");
 		
-		dbg_section("Eight way", true);
+		dbg_section("Multi direction", true);
 			dbg_text(" walk_speed_x:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_x"));
 			dbg_text(" walk_speed_y:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "walk_speed_y"));
 			dbg_text(" direction_last:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "direction_last"));
