@@ -258,13 +258,13 @@ function GMMovement() {
 		
 		if _get.collision_horiz == noone and _horizontal != 0 and !_get.grid_walking_x and !_get.grid_walking_y {
 			_get.grid_previous_x = _get.player.x;
-			_get.grid_target_x = (_get.grid_previous_x + _get.grid_distance * _horizontal);
+			_get.grid_target_x = _get.grid_previous_x + _get.grid_distance * _horizontal;
 			_get.grid_walking_x = true;
 		}
 		
 		if _get.collision_vert == noone and _vertical != 0  and !_get.grid_walking_x and !_get.grid_walking_y {
 			_get.grid_previous_y = _get.player.y;
-			_get.grid_target_y = (_get.grid_previous_y + _get.grid_distance * _vertical);
+			_get.grid_target_y = _get.grid_previous_y + _get.grid_distance * _vertical;
 			_get.grid_walking_y = true;
 		}
 		
@@ -290,8 +290,6 @@ function GMMovement() {
 			}
 		}
 	}
-	
-	
 	
 	return static_get(GMMovement);
 

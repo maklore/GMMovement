@@ -3,7 +3,7 @@ global.refGMMSet = GMMSet();
 global.refGMMConfig = __GMMConfig();
 
 function __GMMDebug(_enable) {
-
+		
 	dbg_view("GMMovement", _enable);
 		dbg_section("General", true);
 			dbg_text(" collision_horiz:                  "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "collision_horiz"));
@@ -52,8 +52,6 @@ function __GMMDebug(_enable) {
 			dbg_text(" grid_int_y:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_y"));
 			dbg_text(" grid_walking_x:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_walking_x"));
 			dbg_text(" grid_walking_y:                    "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_walking_y"));
-			dbg_text(" grid_int_x:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_x"));
-			dbg_text(" grid_int_y:                        "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_int_y"));
 				dbg_text_input(ref_create(__GMMConfig(), "grid_speed"), "grid_speed:", "r");
 				dbg_text_input(ref_create(__GMMConfig(), "grid_distance"), "grid_distance:", "r");
 
