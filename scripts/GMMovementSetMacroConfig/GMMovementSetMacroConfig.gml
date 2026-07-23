@@ -14,6 +14,7 @@
 #macro GMM_jump_speed_dec	0
 #macro GMM_jump_grounded	false
 #macro GMM_jump_coyote_time	0
+#macro GMM_jump_count_max	1
 		
 #macro GMM_fall_speed_max	0
 #macro GMM_fall_speed_acc	0

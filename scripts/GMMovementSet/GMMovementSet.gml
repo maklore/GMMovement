@@ -48,12 +48,14 @@ function GMMSet() {
 	* @param {real} _deceleration Deceleration speed. 0-1, percent of max speed.
 	* @param {bool} _grounded	  Require ground to jump.
 	* @param {real} _coyote_time  Seconds after leaving ground to jump, requires grounded to be enabled.
+	* @param {real} _count		  Amount of jumps allowed, requires grounded to be enabled.
 	*/
-	static jump = function(_max, _deceleration, _grounded = GMM_jump_grounded, _coyote_time = GMM_jump_coyote_time) {
+	static jump = function(_max, _deceleration, _grounded = GMM_jump_grounded, _coyote_time = GMM_jump_coyote_time, _count = GMM_jump_count_max) {
 		__GMMConfig.jump_speed		  = _max;
 		__GMMConfig.jump_speed_dec	  = _deceleration;
 		__GMMConfig.jump_ground_req   = _grounded;
 		__GMMConfig.jump_coyote_time  = _coyote_time;
+		__GMMConfig.jump_count_max	  = _count;
 		return GMMSet();
 	}
 		

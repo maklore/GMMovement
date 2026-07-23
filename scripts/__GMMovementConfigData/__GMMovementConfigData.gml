@@ -36,6 +36,8 @@ function __GMMConfig() {
 	static jump_coyote_time   = GMM_jump_coyote_time;
 	static jump_coyote_timer  = 0;
 	static jump_coyote_active = false;
+	static jump_count		  = 0;
+	static jump_count_max	  = GMM_jump_count_max;
 		
 	static fall_speed		  = 0;
 	static fall_speed_max	  = GMM_fall_speed_max;

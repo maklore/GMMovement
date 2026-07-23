@@ -37,13 +37,15 @@ function GMMovement() {
 			}
 		}
 		
-		if !_get.jump_ground_req and _jump {
+		if _jump and !_get.jump_ground_req {
 			_get.fall_speed = -_get.jump_speed;
 			_get.jump_triggered = true;
-		} else if _jump and (_get.jump_grounded or _get.jump_coyote_active) {
+		} else if _jump and _get.jump_triggered == false and (_get.jump_grounded or _get.jump_coyote_active or (_get.jump_count < _get.jump_count_max)) {
 			_get.fall_speed = -_get.jump_speed;
 			_get.jump_triggered = true;
 			_get.jump_coyote_active = false;
+			_get.jump_count += 1;
+
 		}
 		
 		if _get.jump_coyote_timer > 0 {
@@ -66,11 +68,12 @@ function GMMovement() {
 
 			_get.collision_horiz	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
 			_get.collision_vert   = instance_place(x, y + _get.fall_speed, _get.collision);
-			_get.collision_ground = instance_place(x, y + 1, _get.collision);
+			_get.collision_ground = instance_place(x, y + sign(_get.fall_speed) + 1, _get.collision);
 			
 			if _get.collision_ground != noone {
 				_get.jump_grounded = true;
 				_get.jump_coyote_timer = 0;
+				_get.jump_count = 0;
 			} else if _get.jump_grounded != false {
 				_get.jump_grounded = false;
 				if _get.fall_speed >= 0 {
