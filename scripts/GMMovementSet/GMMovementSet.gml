@@ -84,7 +84,22 @@ function GMMSet() {
 	}
 
 
-
+	/**
+	* Motion config.
+	* @param {real} _speed_max		  Max speed.
+	* @param {real} _speed_acc		  Amount of pixels to accelerate per frame.
+	* @param {real} _speed_dec		  Amount of pixels to decelerate per frame.
+	* @param {real} _speed_rotate	  Amount of pixels to rotate per frame.
+	* @param {real} _speed_boosted	  Boosted max speed.
+	*/
+	static motion = function(_speed_max, _speed_acc, _speed_dec, _speed_rotate, _speed_boosted = GMM_motion_speed_boosted) {
+		__GMMConfig.motion_speed_max	 = _speed_max;
+		__GMMConfig.motion_speed_acc	 = _speed_acc;
+		__GMMConfig.motion_speed_dec	 = _speed_dec;
+		__GMMConfig.motion_speed_rotate	 = _speed_rotate;
+		__GMMConfig.motion_speed_boosted = _speed_boosted;
+		return GMMSet();
+	}
 
 	return static_get(GMMSet)
 	

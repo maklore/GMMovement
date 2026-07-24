@@ -363,26 +363,16 @@ function GMMovement() {
 		
 		static _get = __GMMConfig();
 		
-		var _turn_speed = 1;
-		var _move_speed = 2;
-		var _booster_speed = 4;
-		var _current_speed = _move_speed;
-		
-		if _booster {
-			_current_speed = _booster_speed;
-		}
-		if _get.player.speed != 0 {		
-			_get.player.direction += _turn_speed * -_turn mod 360;
-			_get.player.image_angle = _get.player.direction;
-			
-		}
-		if _move != 0 {
-			_get.player.speed = clamp(_get.player.speed + _current_speed * _move * 1 / 60, -_current_speed, _current_speed);
-		}
-		
-		if _move == 0 {
-			_get.player.speed = _get.player.speed >= 0.001 or _get.player.speed <= -0.001 ? lerp(_get.player.speed,  0, 0.05) : 0;
-		}
+		var _motion_int = _move ? _get.motion_speed_acc : _get.motion_speed_dec;
+		var _motion_speed_max = _booster ? _get.motion_speed_boosted : _get.motion_speed_max;
+		_get.motion_speed = lerp(_get.motion_speed, _motion_speed_max * _move, _motion_int);
+		_get.motion_direction = _get.motion_speed != 0 ? _get.motion_direction + _get.motion_speed_rotate * -_turn : _get.motion_direction;
+		_get.motion_direction_x = lengthdir_x(_get.motion_speed, _get.motion_direction);
+		_get.motion_direction_y = lengthdir_y(_get.motion_speed, _get.motion_direction);
+		_get.player.direction = _get.motion_direction;
+		_get.player.image_angle = _get.motion_direction;
+		_get.player.x += _get.motion_direction_x;
+		_get.player.y += _get.motion_direction_y;
 		
 	}
 	

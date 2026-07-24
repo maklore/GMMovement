@@ -3,63 +3,75 @@
 */
 function __GMMConfig() {
 			
-	static player			  = noone;
-	static collision		  = noone;
-	static collision_horiz	  = noone;
-	static collision_vert	  = noone;
-	static collision_ground	  = noone;
-	static gamespeed		  = 60;	
+	static player				= noone;
+	static collision			= noone;
+	static collision_horiz		= noone;
+	static collision_vert		= noone;
+	static collision_ground		= noone;
+	static gamespeed			= 60;	
 		
-	static direction_last	  = 0;
+	static direction_last		= 0;
 	
-	static walk_speed		  = 0;
-	static walk_speed_x		  = 0;
-	static walk_speed_y		  = 0;
-	static walk_speed_max	  = GMM_walk_speed_max;
-	static walk_speed_acc	  = GMM_walk_speed_acc;
-	static walk_speed_dec	  = GMM_walk_speed_dec;
+	static walk_speed			= 0;
+	static walk_speed_x			= 0;
+	static walk_speed_y			= 0;
+	static walk_speed_max		= GMM_walk_speed_max;
+	static walk_speed_acc		= GMM_walk_speed_acc;
+	static walk_speed_dec		= GMM_walk_speed_dec;
 		
-	static run_speed		  = 0;
-	static run_speed_max	  = GMM_run_speed_max;
-	static run_speed_acc	  = GMM_run_speed_acc;
-	static run_speed_dec	  = GMM_run_speed_dec;
+	static run_speed			= 0;
+	static run_speed_max		= GMM_run_speed_max;
+	static run_speed_acc		= GMM_run_speed_acc;
+	static run_speed_dec		= GMM_run_speed_dec;
 		
-	static dash_speed		  = GMM_dash_speed;
-	static dash_cooldown	  = GMM_dash_cooldown;
-	static dash_countdown	  = GMM_dash_countdown;
+	static dash_speed			= GMM_dash_speed;
+	static dash_cooldown		= GMM_dash_cooldown;
+	static dash_countdown		= GMM_dash_countdown;
 	
-	static jump_speed		  = GMM_jump_speed;
-	static jump_speed_dec	  = GMM_jump_speed_dec;
-	static jump_ground_req	  = GMM_jump_grounded;
-	static jump_grounded	  = false;
-	static jump_triggered	  = false;
-	static jump_coyote_time   = GMM_jump_coyote_time;
-	static jump_coyote_timer  = 0;
-	static jump_coyote_active = false;
-	static jump_count		  = 0;
-	static jump_count_max	  = GMM_jump_count_max;
+	static jump_speed			= GMM_jump_speed;
+	static jump_speed_dec		= GMM_jump_speed_dec;
+	static jump_ground_req		= GMM_jump_grounded;
+	static jump_grounded		= false;
+	static jump_triggered		= false;
+	static jump_coyote_time		= GMM_jump_coyote_time;
+	static jump_coyote_timer	= 0;
+	static jump_coyote_active	= false;
+	static jump_count			= 0;
+	static jump_count_max		= GMM_jump_count_max;
 		
-	static fall_speed		  = 0;
-	static fall_speed_max	  = GMM_fall_speed_max;
-	static fall_speed_acc	  = GMM_fall_speed_acc;
+	static fall_speed			= 0;
+	static fall_speed_max		= GMM_fall_speed_max;
+	static fall_speed_acc		= GMM_fall_speed_acc;
 	
-	static grid_x			  = 0;
-	static grid_y			  = 0;
-	static grid_target_x	  = 0;
-	static grid_target_y	  = 0;
-	static grid_previous_x	  = 0;
-	static grid_previous_y	  = 0;
-	static grid_int_x		  = 0;
-	static grid_int_y		  = 0;
-	static grid_walking_x	  = false;
-	static grid_walking_y	  = false;
-	static grid_speed		  = GMM_grid_speed;
-	static grid_distance	  = GMM_grid_distance;
-	static grid_path_running  = false;
-	static grid_path_active   = false;
-	static grid_path_trigger  = 0;
-	static grid_path_length	  = 0;
-	static grid_path_record   = [];
+	static grid_x				= 0;
+	static grid_y				= 0;
+	static grid_target_x		= 0;
+	static grid_target_y		= 0;
+	static grid_previous_x		= 0;
+	static grid_previous_y		= 0;
+	static grid_int_x			= 0;
+	static grid_int_y			= 0;
+	static grid_walking_x		= false;
+	static grid_walking_y		= false;
+	static grid_speed			= GMM_grid_speed;
+	static grid_distance		= GMM_grid_distance;
+	static grid_path_running	= false;
+	static grid_path_active		= false;
+	static grid_path_trigger	= 0;
+	static grid_path_length		= 0;
+	static grid_path_record		= [];
+	
+	static motion_speed			= 0
+	static motion_speed_acc     = GMM_motion_speed_acc;
+	static motion_speed_dec     = GMM_motion_speed_dec;
+	static motion_speed_rotate  = GMM_motion_speed_rotate;
+	static motion_speed_max		= GMM_motion_speed_max;
+	static motion_speed_boosted = GMM_motion_speed_boosted;
+	static motion_direction		= 0
+	static motion_direction_x	= 0
+	static motion_direction_y	= 0
+	
+	
 	
 	return static_get(__GMMConfig)
 }
