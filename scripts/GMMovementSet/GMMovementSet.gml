@@ -72,11 +72,11 @@ function GMMSet() {
 	
 	/**
 	* Grid config.
-	* @param {real} _speed			  Speed. 0-1.
+	* @param {real} _speed			  Speed. Pixels per frame.
 	* @param {real} _distance		  Distance to move.
 	*/
 	static grid = function(_speed, _distance) {
-		__GMMConfig.grid_speed		= _speed;
+		__GMMConfig.grid_speed		= _speed * (1 / game_get_speed(gamespeed_fps));
 		__GMMConfig.grid_distance	= _distance;
 		__GMMConfig.grid_previous_x = __GMMConfig.player.x;
 		__GMMConfig.grid_previous_y = __GMMConfig.player.y;

@@ -10,7 +10,8 @@ var _dash = GMControls.key_pressed("dash");
 //GMMovement.platformer(_hor, _jump, _run, _dash);
 //GMMovement.eight_way(_hor, _ver, _run, _dash);
 //GMMovement.four_way(_hor, _ver, _run, _dash);
-GMMovement.grid(_hor, _ver, _run);
+//GMMovement.grid(_hor, _ver, _run);
+GMMovement.motion(_hor, _ver, _run);
 
 
 //show_debug_message($"{string_format((get_timer() - _time) / 1000, 1, 2)}ms")

@@ -261,15 +261,15 @@ function GMMovement() {
 		
 		if _record { 
 			exit; 
-		} else if !_get.grid_path_enable {
-			_get.grid_path_enable = true;
+		} else if _get.grid_path_length > 0 and !_get.grid_path_running {
+			_get.grid_path_running = true;
 		}
 		
-		if _get.grid_path_enable and _horizontal != 0 or _vertical != 0 {	
+		if _get.grid_path_running and _horizontal != 0 or _vertical != 0 {	
 			array_resize(_get.grid_path_record, 0);
 			_get.grid_path_length = 0;
 			_get.grid_path_active = false;
-			_get.grid_path_enable = false;
+			_get.grid_path_running = false;
 		}
 		
 		if _get.grid_path_length != 0 and !_record and !_get.grid_path_active {
@@ -304,6 +304,7 @@ function GMMovement() {
 			array_resize(_get.grid_path_record, 0);
 			_get.grid_path_length = 0;
 			_get.grid_path_active = false;
+			_get.grid_path_running = false;
 		}
 		
 		if _get.collision_horiz == noone and _horizontal != 0 and !_get.grid_walking_x and !_get.grid_walking_y {
@@ -330,6 +331,9 @@ function GMMovement() {
 					array_shift(_get.grid_path_record);
 					_get.grid_path_length--;
 					_get.grid_path_active = false;
+					if _get.grid_path_length == 0 {
+						_get.grid_path_running = false;
+					}
 				}
 			}
 		}
@@ -346,13 +350,39 @@ function GMMovement() {
 					array_shift(_get.grid_path_record);
 					_get.grid_path_length--;
 					_get.grid_path_active = false;
+					if _get.grid_path_length == 0 {
+						_get.grid_path_running = false;
+					}
 				}
 			}
 		}
 	}
 	
 	
-	static motion = function() {
+	static motion = function(_turn, _move, _booster = false) {
+		
+		static _get = __GMMConfig();
+		
+		var _turn_speed = 1;
+		var _move_speed = 2;
+		var _booster_speed = 4;
+		var _current_speed = _move_speed;
+		
+		if _booster {
+			_current_speed = _booster_speed;
+		}
+		if _get.player.speed != 0 {		
+			_get.player.direction += _turn_speed * -_turn mod 360;
+			_get.player.image_angle = _get.player.direction;
+			
+		}
+		if _move != 0 {
+			_get.player.speed = clamp(_get.player.speed + _current_speed * _move * 1 / 60, -_current_speed, _current_speed);
+		}
+		
+		if _move == 0 {
+			_get.player.speed = _get.player.speed >= 0.001 or _get.player.speed <= -0.001 ? lerp(_get.player.speed,  0, 0.05) : 0;
+		}
 		
 	}
 	
