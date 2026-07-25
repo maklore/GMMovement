@@ -1,6 +1,6 @@
 
 /**
-* @returns {struct.GMM}
+* @returns {struct.GMMovement}
 */
 function GMMovement() {
 
@@ -363,8 +363,9 @@ function GMMovement() {
 	* @param {real} _turn			Get reals from input check (Right - Left).
 	* @param {real} _move			Get reals from input check (Down - Up).
 	* @param {bool} _booster		Optional. Hold input check to increase max speed.
+	* @param {bool} _dash			Optional. Trigger with input check to temporarily move faster.
 	*/		
-	static motion = function(_turn, _move, _booster = false) {
+	static motion = function(_turn, _move, _booster = false, _dash = false) {
 		
 		static _get = __GMMConfig();
 				
@@ -372,6 +373,18 @@ function GMMovement() {
 		var _motion_speed_max = _booster ? _get.motion_speed_boosted : _get.motion_speed_max;
 		
 		static _image_direction = _get.player.image_angle;
+		
+		if _get.dash_countdown <= 0 and _move != 0 and _dash {
+			_get.motion_speed += _get.dash_speed * _move;
+			_get.dash_countdown = _get.dash_cooldown;
+		}
+		
+		if _get.dash_countdown > 0 {
+			_get.dash_countdown -= 1 / _get.gamespeed;
+			if _get.dash_countdown <= 0 {
+				_get.dash_countdown = 0;
+			}
+		}	
 		
 		_get.motion_speed = lerp(_get.motion_speed, _motion_speed_max * _move, _motion_int);
 		
