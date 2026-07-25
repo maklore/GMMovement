@@ -358,19 +358,47 @@ function GMMovement() {
 		}
 	}
 	
-	
+	/**
+	* 
+	* @param {real} _turn			Get reals from input check (Right - Left).
+	* @param {real} _move			Get reals from input check (Down - Up).
+	* @param {bool} _booster		Optional. Hold input check to increase max speed.
+	*/		
 	static motion = function(_turn, _move, _booster = false) {
 		
 		static _get = __GMMConfig();
-		
-		var _motion_int = _move ? _get.motion_speed_acc : _get.motion_speed_dec;
+				
+		var _motion_int		  = _move	 ? _get.motion_speed_acc	 : _get.motion_speed_dec;
 		var _motion_speed_max = _booster ? _get.motion_speed_boosted : _get.motion_speed_max;
+		
+		static _image_direction = _get.player.image_angle;
+		
 		_get.motion_speed = lerp(_get.motion_speed, _motion_speed_max * _move, _motion_int);
-		_get.motion_direction = _get.motion_speed != 0 ? _get.motion_direction + _get.motion_speed_rotate * -_turn : _get.motion_direction;
-		_get.motion_direction_x = lengthdir_x(_get.motion_speed, _get.motion_direction);
-		_get.motion_direction_y = lengthdir_y(_get.motion_speed, _get.motion_direction);
-		_get.player.direction = _get.motion_direction;
+		
+		_get.motion_direction = _get.motion_speed != 0 ? (_get.motion_direction + _get.motion_speed_rotate * -_turn) mod 360 : _get.motion_direction;
+				
+		with _get.player {
+			
+			var _check_x = lengthdir_x(_get.motion_speed, _get.motion_direction);
+			var _check_y = lengthdir_y(_get.motion_speed, _get.motion_direction);
+			
+			var _collision = instance_place(x + _check_x, y + _check_y, _get.collision);
+			
+			if _collision != noone {
+				
+				var _distance = distance_to_object(_collision);
+				
+				_get.motion_speed = _distance * _move;
+				
+			}
+			
+		}
+		
 		_get.player.image_angle = _get.motion_direction;
+		
+		_get.motion_direction_x = lengthdir_x(_get.motion_speed, _get.motion_direction);
+		_get.motion_direction_y = lengthdir_y(_get.motion_speed, _get.motion_direction);	
+		
 		_get.player.x += _get.motion_direction_x;
 		_get.player.y += _get.motion_direction_y;
 		

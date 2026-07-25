@@ -60,5 +60,16 @@ function __GMMDebug(_enable) {
 			dbg_text(" grid_path_trigger:                 "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_path_trigger"));
 			dbg_text(" grid_path_length:                  "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_path_length"));
 			dbg_text(" grid_path_record:                  "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "grid_path_record"));
+			
+		dbg_section("Motion", true);
+			dbg_text(" motion_speed:                      "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "motion_speed"));
+			dbg_text(" motion_direction_x:                "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "motion_direction_x"));
+			dbg_text(" motion_direction_y:                "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "motion_direction_y"));
+			dbg_text_input(ref_create(__GMMConfig(), "motion_speed_acc"), "motion_speed_acc:", "r");
+			dbg_text_input(ref_create(__GMMConfig(), "motion_speed_dec"), "motion_speed_dec:", "r");
+			dbg_text_input(ref_create(__GMMConfig(), "motion_speed_rotate"), "motion_speed_rotate:", "r");
+			dbg_text_input(ref_create(__GMMConfig(), "motion_speed_max"), "motion_speed_max:", "r");
+			dbg_text_input(ref_create(__GMMConfig(), "motion_speed_boosted"), "motion_speed_boosted:", "r");
+			dbg_text_input(ref_create(__GMMConfig(), "motion_direction"), "motion_direction:", "r");
 
 }
