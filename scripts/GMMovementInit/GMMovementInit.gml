@@ -1,3 +1,9 @@
+/**
+* Set the player object, collision instance/array, and gamespeed (optional, uses set gamespeed by default).
+* 
+*
+*
+*/
 function GMMInit(_player_object, _collision_instance, _gamespeed = game_get_speed(gamespeed_fps)) {
 		
 	__GMMConfig.player	 = _player_object;

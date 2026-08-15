@@ -1,5 +1,7 @@
 
 /**
+* Choose desired movement style with the . accessor.
+* Movement styles included are: platformer, eight_way, four_way, grid, and motion.
 * @returns {struct.GMMovement}
 */
 function GMMovement() {

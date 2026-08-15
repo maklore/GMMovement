@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMMovementGet",
+  "%Name":"GMMovementGetData",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMMovementGet",
+  "name":"GMMovementGetData",
   "parent":{
     "name":"GMMovement",
     "path":"folders/GMMovement.yy",

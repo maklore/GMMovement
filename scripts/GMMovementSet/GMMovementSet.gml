@@ -5,7 +5,7 @@
 function GMMSet() {
 		
 	/**
-	* Walk config.
+	* Walk config. (Platformer, eight_way, and four_way).
 	* @param {real} _max		  Max speed.
 	* @param {real} _acceleration Acceleration speed.
 	* @param {real} _deceleration Deceleration speed.
@@ -19,7 +19,7 @@ function GMMSet() {
 	}
 		
 	/**
-	* Run config.
+	* Run config. (Platformer, eight_way, and four_way).
 	* @param {real} _max		  Max speed.
 	* @param {real} _acceleration Acceleration speed.
 	* @param {real} _deceleration Deceleration speed.
@@ -32,7 +32,7 @@ function GMMSet() {
 	}
 		
 	/**
-	* Dash config - Adds set amount to the current speed.
+	* Dash config - Adds set amount to the current speed. (Platformer, eight_way, four_way, and motion).
 	* @param {real} _amount		 Speed.
 	* @param {real} _cooldown	 Cooldown in seconds.
 	*/
@@ -43,10 +43,10 @@ function GMMSet() {
 	}
 		
 	/**
-	* Jump config.
+	* Jump config. (Platformer).
 	* @param {real} _max		  Max speed.
 	* @param {real} _deceleration Deceleration speed. 0-1, percent of max speed.
-	* @param {bool} _grounded	  Require ground to jump.
+	* @param {bool} _grounded	  Require ground to jump. Default is false.
 	* @param {real} _coyote_time  Seconds after leaving ground to jump, requires grounded to be enabled.
 	* @param {real} _count		  Amount of jumps allowed, requires grounded to be enabled.
 	*/
@@ -60,7 +60,7 @@ function GMMSet() {
 	}
 		
 	/**
-	* Fall config.
+	* Fall config. (Platformer).
 	* @param {real} _max		  Max speed.
 	* @param {real} _acceleration Acceleration speed. 0-1.
 	*/
