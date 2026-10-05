@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMMovementSet",
+  "%Name":"GMMMacroConfig",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMMovementSet",
+  "name":"GMMMacroConfig",
   "parent":{
-    "name":"GMMovement",
-    "path":"folders/GMMovement.yy",
+    "name":"Optional",
+    "path":"folders/GMMovement/Optional.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

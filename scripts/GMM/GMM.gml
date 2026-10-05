@@ -2,9 +2,9 @@
 /**
 * Choose desired movement style with the . accessor.
 * Movement styles included are: platformer, eight_way, four_way, grid, and motion.
-* @returns {struct.GMMovement}
+* @returns {struct.GMM}
 */
-function GMMovement() {
+function GMM() {
 
 	/**
 	*
@@ -47,7 +47,6 @@ function GMMovement() {
 			_get.jump_triggered = true;
 			_get.jump_coyote_active = false;
 			_get.jump_count += 1;
-
 		}
 		
 		if _get.jump_coyote_timer > 0 {
@@ -68,8 +67,8 @@ function GMMovement() {
 		
 		with (_get.player) {
 
-			_get.collision_horiz	  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
-			_get.collision_vert   = instance_place(x, y + _get.fall_speed, _get.collision);
+			_get.collision_horiz  = instance_place(x + _get.walk_speed + _horizontal, y, _get.collision);
+			_get.collision_vert   = instance_place(x, y + _get.fall_speed + 1, _get.collision);
 			_get.collision_ground = instance_place(x, y + sign(_get.fall_speed) + 1, _get.collision);
 			
 			if _get.collision_ground != noone {
@@ -247,7 +246,7 @@ function GMMovement() {
 	* Press any movement input to exit auto movement after releasing
 	* @param {real} _horizontal		Get reals from input check (Right - Left).
 	* @param {real} _vertical		Get reals from input check (Down - Up).
-	* @param {bool} _record			Optional. Hold input check to record movement input.
+	* @param {bool} _record			Optional. Hold input check to record movement input, release to automove.
 	*/		
 	static grid = function(_horizontal, _vertical, _record = false) {
 		
@@ -420,8 +419,8 @@ function GMMovement() {
 	}
 	
 	
-	return static_get(GMMovement);
+	return static_get(GMM);
 
 }
 
-GMMovement();
+GMM();

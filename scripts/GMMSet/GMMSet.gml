@@ -1,5 +1,5 @@
 /**
-* Set the speed for various variables using the . accessor.
+* Set the various variables for movement types using the dot accessor.
 * @returns {struct.GMMSet}
 */
 function GMMSet() {

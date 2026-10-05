@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMMovementSetMacroConfig",
+  "%Name":"GMMSet",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMMovementSetMacroConfig",
+  "name":"GMMSet",
   "parent":{
     "name":"GMMovement",
     "path":"folders/GMMovement.yy",

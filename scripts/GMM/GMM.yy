@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMMovementInit",
+  "%Name":"GMM",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMMovementInit",
+  "name":"GMM",
   "parent":{
     "name":"GMMovement",
     "path":"folders/GMMovement.yy",

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"GMMovement",
+  "%Name":"GMMGetData",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"GMMovement",
+  "name":"GMMGetData",
   "parent":{
-    "name":"GMMovement",
-    "path":"folders/GMMovement.yy",
+    "name":"Optional",
+    "path":"folders/GMMovement/Optional.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

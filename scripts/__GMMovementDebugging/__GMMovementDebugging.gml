@@ -1,10 +1,10 @@
-global.refGMMovement = GMMovement();
+global.refGMM = GMM();
 global.refGMMSet = GMMSet();
 global.refGMMConfig = __GMMConfig();
 
 function __GMMDebug(_enable) {
 		
-	dbg_view("GMMovement", _enable);
+	dbg_view("GMM", _enable);
 	
 		dbg_section("General", true);
 			dbg_text(" collision_horiz:                  "); dbg_same_line(); dbg_text(ref_create(__GMMConfig(), "collision_horiz"));
